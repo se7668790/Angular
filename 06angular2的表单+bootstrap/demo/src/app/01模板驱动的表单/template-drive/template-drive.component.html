@@ -1,0 +1,39 @@
+<div class="container">
+	<h1>模板驱动的表单 works!</h1>
+	<!--通过 #signupForm="ngForm" 我们可以获取到 ngForm 指令, 并且操作它, 比如 form.valid, form.value 等-->
+
+	<!--ngSubmit 配合 button type=submit 使用 -->
+	<form #signupForm="ngForm" (ngSubmit)="SignUp(signupForm)">
+
+		<div class="form-group">
+			<label for="email">Email</label>
+
+			<!--[(ngModel)] 实现双向绑定和 get set value for input -->
+			<!--#name="ngModel" 代表#name 引用 ngModel 指令，可以获取 name.valid 等。其实可以直接简写为ngModel -->
+			<!--required, minlength, maxlength 是原生提供的验证. ng2 给的原生验证指令很少，连 email,number 都没有哦. -->
+			<input type="text" name="email" id="email" [(ngModel)]="user.name" #name="ngModel" class="form-control" required>
+
+		</div>
+
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" [(ngModel)]="user.psw" class="form-control" required>
+		</div>
+
+		<!--使用xxx.valid验证-->
+		<div class="form-group">
+			<fieldset ngModelGroup="address">
+				<legend>Address</legend>
+				<div>
+					Street: <input type="text" [(ngModel)]="user.address.country" name="country" #country="ngModel" class="form-control" required />
+				</div>
+				<!--上边设置了required，并且#country="ngModel"绑定了，所以在这里可以使用country.valid，判断是否验证通过。
+					另外上边提到了可以直接把#country="ngModel"简写为:ngModel即可。
+				-->
+				<div>country 验证通过了吗？ : <strong>{{ country.valid ? '通过！' : '未通过！！！'}}</strong></div>
+			</fieldset>
+		</div>
+
+		<button type="submit" class="btn btn-success">Sign Up</button>
+	</form>
+</div>

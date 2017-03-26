@@ -1,0 +1,18 @@
+
+h1{
+	color: #333333;
+	font-weight: lighter;
+}
+
+a{
+	font-size: 3rem;
+	margin: 3rem;
+}
+.active{
+	
+	color: #008000;
+}
+button{
+	padding: 1rem 1.5rem;
+	font-size: 2rem;
+}

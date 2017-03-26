@@ -1,0 +1,8 @@
+
+<div>
+	<ul>
+		<li  *ngFor="let num of list">
+			<a [routerLink]="['/home','detail', num]" routerLinkActive="active">详情:{{num}}</a>
+		</li>
+	</ul>
+</div>

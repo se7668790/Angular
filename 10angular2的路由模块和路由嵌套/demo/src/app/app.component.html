@@ -1,0 +1,18 @@
+<h1>
+  {{title}}
+</h1>
+
+<div>
+	<h1>路由</h1>
+
+	<a [routerLink]="['/home/list']" routerLinkActive="active">home</a>
+	<a [routerLink]="['/about']" routerLinkActive="active">About</a>
+	<a [routerLink]="['/setting']" routerLinkActive="active">contact</a>
+	
+	
+	<!--router-outlet来作为载入点。-->
+	<router-outlet></router-outlet>
+  
+	
+	
+</div>

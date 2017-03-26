@@ -1,0 +1,107 @@
+<section>
+
+	<h1>My First Angular2 App!</h1>
+
+	
+	
+	<h1>数据绑定</h1>
+	<img src="../assets/img/databinding.png" alt="databinding"/>
+	<ul>
+		上图中
+		<li>1.定义取值表达式</li>
+		<li>2.进行属性绑定。</li>
+		<li>3.进行事件绑定</li>
+		<li>4.进行双向数据绑定。一般用于表单。</li>
+	</ul>
+	
+	<h2>基本用法</h2>
+	
+	<!--取值表达式-->
+	<h1>1,取值表达式</h1>
+
+	<h3>Hello {{name}}</h3>
+
+	<img src="{{imgUrl}}" style="height:100px" alt="angular2">
+
+	<h3>10 + 10 = {{10 + aValue}}</h3>
+	
+	
+	<h1>2,声明属性</h1>
+	
+	<!--将value属性绑定到firstName表达式的计算结果-->
+	<input [value]="myName">
+
+	<!--将自定义属性  绑定到表达式 的值-->
+	<div [attr.custom]="custom">自定义属性并绑定变量的值</div>
+
+	<!--根据表达式 的值，动态添加/移除将CSS类-->
+	<div [class.aClass]="isClass">根据表达式的值，动态添加/移除将CSS类 extra-sparkle</div>
+
+	<!--将样式属性 width/height绑定到表达式 mySize。默认的是px.也可以使用其他单位-->
+	<div [style.width.px]="mySize.w" [style.height.rem]="mySize.h">将样式属性 width 绑定到表达式 mySize ，默认的是PX，也可以使用单位</div>
+	
+	<h1>3,事件绑定</h1>
+	
+	<!--绑定click事件，并且传递一个event对象-->
+	<!--使用一对小括号包裹事件名称，并绑定 到表达式-->
+	<button (click)="myClick($event)">(click)</button>
+
+	<button on-click="myClick()">on-Click</button>
+	
+	<!--Angular 可以为我们过滤键盘事件，通过绑定到 Angular 的 keyup.enter 伪事件监听回车键的事件-->
+	<input type="text" (keyup.enter)="myKeyUp()" />
+	
+	<h1>4,双向数据绑定</h1>
+	
+	<p>您输入的邮箱是:<strong>{{user.email}}</strong> </p>
+	
+	<input required pattern="^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$" #emailInput="ngModel" [(ngModel)]="user.email" name="email"  type="email" placeholder="注册时使用的邮箱">
+	
+	<p>测试局部模板变量{{emailInput.value}}</p>
+	
+	
+	<!--#用于绑定局部模板变量-->
+	<!--可以通过使用局部模板变量来显示用户数据，模板引用变量通过在标识符前加上井号 (#) 来实现。
+		
+	局部模板变量引用的是标签元素本身。
+	-->
+	<h1>5,"#"用于局部模板变量</h1>
+	
+	<p #ppp >这是一个p标签，绑定了局部模板变量</p>
+	
+	<p>我获取到了上边的p标签的内容:<strong>{{ppp.innerHTML}}</strong></p>
+	
+	
+	<h1>6,ngFor用于对数组循环输出。*ngFor其实是一个语法糖的写法。</h1>
+	<ul>
+		<!--老版本会用let...in...的语法，新版本用let...of...很坑爹！有木有！！！-->
+		<li *ngFor='let book of books'>
+			{{book}}
+		</li>
+	</ul>
+	
+	<p>循环输出多个Person的数据模型对象。</p>
+	<ol>
+		
+		<li *ngFor="let aPerson of persons">
+			
+			<strong>姓名:{{aPerson.name}}</strong>
+			<p>年龄:{{aPerson.age}}</p>
+		</li>
+	</ol>
+	
+	<h1>7,ngIf进行条件显示</h1>
+	
+	<!--ngIf的值可以是一个表示真假值的表达式-->
+	<p *ngIf='isShow'>动态切换显示或是隐藏</p>
+	
+	<button (click)='myToggle()'>显示/隐藏</button>
+	
+	<h1>8,ngSwitch结构型指令用法</h1>
+	<!--注意在老的angular2版本中使用ngSwitchWhen新版本已经不能用了。很坑爹！！！！有木有！！！-->
+	<div [ngSwitch]="status">
+		<template [ngSwitchCase]="'in-mission'">In Mission</template>
+		<template [ngSwitchCase]="'ready'">Ready</template>
+		<template ngSwitchDefault>Unknown</template>
+	</div>
+</section>

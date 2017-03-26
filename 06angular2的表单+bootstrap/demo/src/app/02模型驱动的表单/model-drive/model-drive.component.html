@@ -1,0 +1,67 @@
+<div class="container">
+	
+	<h1>模型驱动的表单 works!</h1>
+	
+	<p>在大部分情况下, model drive 是更好的选择, 因为它把逻辑才开了, 不要依赖模板是 angular2 一个很重要的思想, 我们要尽量少依赖模板来写业务逻辑, 因为在多设备开发情况下模板是不能复用的.而且不依赖模板也更容易测试. </p>
+
+	<p>我们看看整个 form 的核心是什么 ?</p>
+	
+	<p>就是对一堆有结构的数据, 附上验证逻辑, 然后绑定到各个组件上去与用户互动.</p>
+	
+	<p>所以 model drive 的开发流程是 : 定义出有结构的数据 -> 绑定验证 -> 绑定到组件 -> 用户操作 (我们监听并且反应)</p>
+	
+     <h3>需要注意的是:使用响应式/模型驱动的表单需要引入内置的<strong>ReactiveFormsModule</strong> </h3>
+     
+    <!--formGroup属性定义一个表单组--> 
+	<form [formGroup]="loginForm" (ngSubmit)="login()">
+		
+		<div class="form-group">
+			
+			<label for="username">username</label>
+			
+			<!--formControl对某一个表单数据进行控制，比如添加验证信息。-->
+			<input type="text" name="username" id="username" class="form-control" [formControl]="username">
+			
+			<!--我们使用.valid和.untouched来确定是否需要显示错误-->
+			<div [hidden]="username.valid || username.untouched" style="color: red;">
+				
+				<div>错误提示:</div>
+				
+				<!--对于内置验证，我们在表单元素上调用.hasError()，我们传递一个字符串，它表示我们包含的验证器函数。 仅当此测试返回true时，才会显示错误消息。-->
+				<div [hidden]="!username.hasError('minlength')"><strong>Username can not be shorter than 5 characters.</strong></div>
+				
+				<div [hidden]="!username.hasError('required')"><strong> Username is required.</strong></div>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+		<div class="form-group">
+			
+			<label for="password">password</label>
+			
+			<input type="password" name="password" id="password" class="form-control" [formControl]="password">
+			
+			<div [hidden]="password.valid || password.untouched" style="color: red;">
+				
+				<div>错误提示:</div>
+				
+				<div [hidden]="!password.hasError('required')"> <strong>The password is required.</strong></div>
+				
+			</div>
+			
+		</div>
+		
+		<button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">Log In</button>
+	</form>
+
+	<h2>关于表单的验证提示功能</h2>
+	<img src="../../../assets/img/QQ截图20170323142422.png" alt="" width="100%" />
+	
+	<h1>另外还有一个问题需要留意:</h1>
+	<img src="../../../assets/img/QQ截图20170323143801.png" width="100%"/>
+	<img src="../../../assets/img/QQ截图20170323144018.png" width="100%"/>
+</div>
+

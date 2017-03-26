@@ -1,0 +1,38 @@
+<div>
+	<h1>
+  	{{title}}
+	</h1>
+	<!--使用内置的DatePipe-->
+	<h3>内置的DatePipe.用法其实和ng1一样</h3>
+	<p>这是一个对日期进行格式化的管道{{birth | date}}</p>
+	<p>这是一个对日期进行格式化的管道{{birth | date:'yyyy-MM-dd'}}</p>
+
+	<h3>动态切换</h3>
+	<p>这是一个对日期进行格式化的管道{{birth | date:format}}</p>
+
+	<button (click)='toggleFormat()'>full/short</button>
+
+	<h3>链式管道</h3>
+	<p>这是一个对日期进行格式化的管道{{birth | date:format | uppercase}}</p>
+
+	<!--可以利用括号来改变管道的执行顺序-->
+	<p>这是一个对日期进行格式化的管道{{(birth | date:format) | uppercase}}</p>
+
+	<h3>自定义管道</h3>
+	<div>请输入一个数组 <input [(ngModel)]="power"></div>
+	<div>请输入要计算的次幂 <input [(ngModel)]="factor"></div>
+	<p>
+		得到的结果是： {{power | myPipe: factor}}
+	</p>
+	
+	<p>
+		得到的结果是： {{power | pur: factor}}
+	</p>
+	<ul>
+		自定义管道使用的时候 两个注意点：
+		<li>自定义管道和内置管道使用方式完全相同。引用的是管道的name属性，即名称。</li>
+		<li><strong>特别注意:在老的版本里要在pipes 数组里列出我们的管道.但在新的版本里边这样做会报错!坑爹啊!有木有!!!!</strong></li>
+	</ul>
+	
+	
+</div>
